@@ -1,4 +1,4 @@
-package tasks_from_lectures;
+package lessons_from_class.tasks_from_lectures;
 
 public class LcmProblem {
     public static int lcm (int x, int y) {

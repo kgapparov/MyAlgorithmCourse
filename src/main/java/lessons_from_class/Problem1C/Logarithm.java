@@ -1,4 +1,4 @@
-package Problem1C;
+package lessons_from_class.Problem1C;
 
 public class Logarithm {
     private Logarithm(){}

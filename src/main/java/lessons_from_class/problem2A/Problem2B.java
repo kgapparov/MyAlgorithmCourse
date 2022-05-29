@@ -1,4 +1,4 @@
-package problem2A;
+package lessons_from_class.problem2A;
 
 
 import java.util.Arrays;

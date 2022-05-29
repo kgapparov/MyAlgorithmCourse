@@ -1,4 +1,8 @@
-package problem3A;
+package lessons_from_class.problem3A;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Problem3A {
     /**
@@ -32,6 +36,22 @@ public class Problem3A {
         }
         return true;
     }
+
+    private static boolean isPrimeOptimal(int n) {
+        if (n <= 1)
+            return false;
+        if (n <= 3)
+            return true;
+        if (n % 2 == 0 || n % 3 == 0) {
+            return false;
+        }
+        for (int i = 5; i*i <= n; i += 6) {
+            if (n % i == 0|| n % (i +2) == 0)
+                return false;
+        }
+        return true;
+    }
+
     // T(n) = O(log(n)) int terms of value
     // T(b) = O(b) int terms of size
 
@@ -118,4 +138,45 @@ public class Problem3A {
      * C. Implement this algorithm in Java, and write it so that it can be run in the Sorting Environment. Then run
      * it and compare running times with the other sorting algorithms we have studied. Is it faster than LibrarySort?
      */
+   public static void recSort(int[] arr, int l , int r) {
+       if (l < r) {
+           int m = l + (r - l)/2;
+           recSort(arr, l, m);
+           recSort(arr, m+1, r);
+           merge(arr, l, m ,r );
+       }
+   }
+   public static void merge(int[] arr, int l, int m, int r) {
+       int n1 = m - l + 1;
+       int n2 = r - m;
+
+       int L[] = new int[n1];
+       int R[] = new int[n2];
+
+       for (int i = 0; i < n1; ++i) {
+           L[i] = arr[l+i];
+       }
+       for (int i = 0; i < n2; ++i) {
+           R[i] = arr[m+1+i];
+       }
+       int i = 0, j = 0;
+       int k = l;
+
+       while (i < n1 && j < n2) {
+           arr[k++] = L[i] < R[j] ? L[i++] : R[j++];
+       }
+
+       while (i < n1) {
+           arr[k++] = L[i++];
+       }
+
+       while (j < n2)
+           arr[k++] = R[j++];
+   }
+
+    public static void main(String[] args) {
+       int[] arr = new int[]{3,4,3,1,3,5,51,23,1};
+        Problem3A.recSort(arr, 0, arr.length -1);
+        System.out.println(Arrays.toString(arr));
+    }
 }

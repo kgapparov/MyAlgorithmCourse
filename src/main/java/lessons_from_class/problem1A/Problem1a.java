@@ -1,4 +1,4 @@
-package problem1A;
+package lessons_from_class.problem1A;
 
 import java.util.*;
 
